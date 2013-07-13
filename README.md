@@ -21,6 +21,7 @@ Usage
 Add the default recipe as the first recipe in your runlist for vagrant.
 
 A bare minimum sample Vagrantfile
+
     Vagrant.configure("2") do |config|
       config.vm.hostname = "centos"
 
