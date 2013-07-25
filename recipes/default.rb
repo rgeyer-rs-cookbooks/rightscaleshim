@@ -61,6 +61,9 @@ rightscaleshim_node_persister node_persister_name do
   action :nothing
 end
 
+directory Chef::Config[:file_cache_path] do
+  recursive true
+end
 file ::File.join(Chef::Config[:file_cache_path], "rightscaleshim_node_persister") do
   action :touch
   notifies :dehydrate, "rightscaleshim_node_persister[#{node_persister_name}]", :delayed
