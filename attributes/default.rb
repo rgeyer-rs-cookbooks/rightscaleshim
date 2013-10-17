@@ -32,7 +32,7 @@ default[:rightscale][:servers][:sketchy][:hostname] = 'localhost'
 # If it isn't set, set it
 default[:sys_firewall][:enabled] = 'disabled'
 # If it is set, overwrite it
-node[:sys_firewall][:enabled] = 'disabled'
+node.set[:sys_firewall][:enabled] = 'disabled'
 
 default[:sys][:swap_size] = "0.5"
 default[:sys][:swap_file] = "/mnt/ephemeral/swapfile"
@@ -44,11 +44,11 @@ node['network']['interfaces'].each do |iface|
     if details['family'] == 'inet'
       case ip
         when /^10|172|192\./
-          node[:cloud][:private_ips] << ip
+          node.set[:cloud][:private_ips] << ip
         when "127.0.0.1"
           # Intentionally don't do anything
         else
-          node['cloud']['public_ips'] << ip
+          node.set['cloud']['public_ips'] << ip
       end
     end
   end
